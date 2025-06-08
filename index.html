@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proje Tanıtımı</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Proje Tanıtımı</h1>
+        <div class="main-categories">
+            <a href="oyun.html" class="category-box">
+                <h2>Oyun Projeleri</h2>
+            </a>
+            <a href="yazin.html" class="category-box">
+                <h2>Yazın Projeleri</h2>
+            </a>
+            <a href="uygulama.html" class="category-box">
+                <h2>Uygulama Projeleri</h2>
+            </a>
+            <a href="tanitim.html" class="category-box">
+                <h2>Beni Tanı</h2>
+            </a>
+        </div>
+
+        <div class="sub-categories" id="subCategories">
+            <!-- Alt kategoriler JavaScript ile eklenecek -->
+        </div>
+
+        <div class="modal" id="projectModal">
+            <div class="modal-content">
+                <span class="close-button">&times;</span>
+                <div class="project-details">
+                    <div class="project-image">
+                        <img src="" alt="Proje Görseli" id="modalImage">
+                    </div>
+                    <div class="project-info">
+                        <h2 id="modalTitle"></h2>
+                        <p id="modalDescription"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html> 

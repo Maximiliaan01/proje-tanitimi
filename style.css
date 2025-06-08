@@ -1,0 +1,409 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    margin: 0;
+    font-family: 'Segoe UI', 'Arial', sans-serif;
+    background: #111;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* Üstte fonksiyon/dalga gibi turuncu SVG çizgiler */
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 180px;
+    background: url('data:image/svg+xml;utf8,<svg width="100%25" height="180" viewBox="0 0 1440 180" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0 90 Q 180 10 360 90 T 720 90 T 1080 90 T 1440 90" stroke="%23ff9100" stroke-width="6" fill="none"/><path d="M0 120 Q 240 40 480 120 T 960 120 T 1440 120" stroke="%23ffb300" stroke-width="3" fill="none"/><path d="M0 60 Q 360 160 720 60 T 1440 60" stroke="%23ff6f00" stroke-width="2" fill="none"/></svg>');
+    background-repeat: no-repeat;
+    background-size: cover;
+    z-index: 0;
+    opacity: 0.95;
+}
+
+body::after {
+    display: none;
+}
+
+.container, .main-categories, .projects-grid, .password-container {
+    position: relative;
+    z-index: 1;
+}
+
+h1 {
+    text-align: center;
+    color: #ffffff;
+    margin-bottom: 3rem;
+    font-size: 2.5rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    position: relative;
+}
+
+h1::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 3px;
+    background: linear-gradient(90deg, #0095ff, #00ff88);
+    border-radius: 3px;
+}
+
+.main-categories {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.2rem;
+    max-width: 900px;
+    margin: 2rem auto 1rem auto;
+    padding: 0.5rem;
+}
+
+.category-box, .project-box {
+    background: #fff;
+    color: #181818;
+    border-radius: 18px 18px 24px 24px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.10), 0 1.5px 0 #ff9100;
+    border: none;
+    position: relative;
+    overflow: visible;
+    min-height: 120px;
+    min-width: 0;
+    padding: 1.1rem 0.7rem 1.7rem 0.7rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: box-shadow 0.3s, transform 0.3s;
+    cursor: pointer;
+}
+
+.category-box::after, .project-box::after {
+    content: '';
+    position: absolute;
+    left: 12px;
+    right: 12px;
+    bottom: 8px;
+    height: 8px;
+    border-radius: 0 0 12px 12px;
+    background: linear-gradient(90deg, #ff9100 60%, #ffb300 100%);
+    opacity: 0.95;
+    z-index: 2;
+    transition: height 0.3s cubic-bezier(.4,2,.6,1), box-shadow 0.3s;
+}
+
+.category-box:hover::after, .project-box:hover::after {
+    height: 18px;
+    box-shadow: 0 4px 24px 0 #ff910055;
+}
+
+.category-box:hover, .project-box:hover {
+    box-shadow: 0 8px 32px rgba(255,145,0,0.18), 0 2px 8px rgba(0,0,0,0.10);
+    transform: translateY(-3px) scale(1.03);
+}
+
+.category-box h2, .project-box h3 {
+    color: #181818;
+    z-index: 3;
+    position: relative;
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+    margin-bottom: 0.2em;
+}
+
+.back-button {
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    color: white;
+    padding: 0.8rem 1.5rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    margin-bottom: 2rem;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    text-decoration: none;
+    display: inline-block;
+}
+
+.back-button:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateX(-5px);
+}
+
+.category-title {
+    color: white;
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.2rem;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0.5rem;
+}
+
+.project-box {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    aspect-ratio: 1;
+}
+
+.project-box:hover {
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 12px 40px rgba(0, 149, 255, 0.2);
+    border: 1px solid rgba(0, 149, 255, 0.3);
+}
+
+.project-box .project-image {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+}
+
+.project-box .project-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.project-box:hover .project-image img {
+    transform: scale(1.1);
+}
+
+.project-box h3 {
+    color: white;
+    padding: 1rem;
+    text-align: center;
+    font-size: 1.2rem;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(5px);
+    z-index: 1000;
+}
+
+.modal-content {
+    position: relative;
+    background: rgba(26, 26, 46, 0.95);
+    margin: 5% auto;
+    padding: 2rem;
+    width: 80%;
+    max-width: 800px;
+    border-radius: 20px;
+    box-shadow: 0 0 50px rgba(0, 149, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.close-button {
+    position: absolute;
+    right: 1.5rem;
+    top: 1.5rem;
+    font-size: 1.8rem;
+    cursor: pointer;
+    color: #ffffff;
+    transition: color 0.3s ease;
+}
+
+.close-button:hover {
+    color: #0095ff;
+}
+
+.project-details {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.project-image {
+    width: 100%;
+    height: 300px;
+    overflow: hidden;
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.project-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.project-info {
+    padding: 1rem;
+}
+
+.project-info h2 {
+    color: #ffffff;
+    margin-bottom: 1rem;
+    font-size: 1.8rem;
+}
+
+.project-info p {
+    color: #b3b3b3;
+    line-height: 1.8;
+    font-size: 1.1rem;
+    white-space: pre-line;
+    margin-bottom: 1rem;
+}
+
+/* Şifre koruması için stiller */
+.password-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 60vh;
+}
+
+.password-box {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 2rem;
+    text-align: center;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    max-width: 400px;
+    width: 90%;
+}
+
+.password-box h2 {
+    color: #ffffff;
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+}
+
+.password-input {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.password-input input {
+    flex: 1;
+    padding: 0.8rem;
+    border: none;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    font-size: 1rem;
+}
+
+.password-input input::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.password-input button {
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    background: linear-gradient(45deg, #0095ff, #00ff88);
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.password-input button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 149, 255, 0.3);
+}
+
+.error-message {
+    color: #ff4444;
+    margin-top: 1rem;
+    font-size: 0.9rem;
+}
+
+.about-content {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 2rem;
+    text-align: left;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.about-content h2 {
+    color: #ffffff;
+    margin-bottom: 1.5rem;
+    font-size: 2rem;
+}
+
+.about-content p {
+    color: #b3b3b3;
+    line-height: 1.8;
+    font-size: 1.1rem;
+}
+
+@media (max-width: 900px) {
+    .main-categories, .projects-grid {
+        grid-template-columns: repeat(2, 1fr);
+        max-width: 98vw;
+        gap: 0.7rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .main-categories, .projects-grid {
+        grid-template-columns: 1fr;
+        max-width: 98vw;
+        gap: 0.5rem;
+    }
+    .category-box, .project-box {
+        min-height: 80px;
+        padding: 0.7rem 0.4rem 1.1rem 0.4rem;
+    }
+    .category-box h2, .project-box h3 {
+        font-size: 0.98rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .back-button {
+        padding: 0.6rem 1.2rem;
+        font-size: 0.9rem;
+    }
+} 

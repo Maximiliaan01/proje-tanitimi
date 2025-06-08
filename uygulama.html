@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Uygulama Projeleri</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-button">← Ana Sayfaya Dön</a>
+        <h1>Uygulama Projeleri</h1>
+        <div class="projects-grid">
+            <div class="project-box" onclick="showProjectDetails('♻️ Recylist', 'Geri dönüşüme yeni bir soluk! Atık toplayanlara puanlar ve ödüller vererek çevre bilincini artırıyor. Takip sistemiyle herkesin katkısı görünür, doğa kazansın!', 'https://via.placeholder.com/400x300')">
+                <div class="project-image">
+                    <img src="https://via.placeholder.com/400x300" alt="Recylist">
+                </div>
+                <h3>♻️ Recylist</h3>
+            </div>
+            <div class="project-box" onclick="showProjectDetails('💊 SmartPill', 'İlaçlarını unutma! Bitmek üzere olan ilaçların için anında uyarı gönderir, en yakın eczanelerde stok durumunu gösterir. Sağlığın artık tam kontrolünde.', 'https://via.placeholder.com/400x300')">
+                <div class="project-image">
+                    <img src="https://via.placeholder.com/400x300" alt="SmartPill">
+                </div>
+                <h3>💊 SmartPill</h3>
+            </div>
+            <div class="project-box" onclick="showProjectDetails('📚 BookChain', 'Kitap tutkunları için güvenli paylaşım platformu! Kitaplarını değiştir, teslimatı fotoğrafla doğrula, yeni hikayeler keşfet. Okuma tutkunu büyüt!', 'https://via.placeholder.com/400x300')">
+                <div class="project-image">
+                    <img src="https://via.placeholder.com/400x300" alt="BookChain">
+                </div>
+                <h3>📚 BookChain</h3>
+            </div>
+            <div class="project-box" onclick="showProjectDetails('👨‍🦯 HelpFinder', 'Engelli bireylerin yanında ol! Gönüllü destek ağı sayesinde yardım iste, yardım et. Harita üzerinde kolayca bulun, dayanışma gücünü artır.', 'https://via.placeholder.com/400x300')">
+                <div class="project-image">
+                    <img src="https://via.placeholder.com/400x300" alt="HelpFinder">
+                </div>
+                <h3>👨‍🦯 HelpFinder</h3>
+            </div>
+            <div class="project-box" onclick="showProjectDetails('🛣️ FixMap', 'Mahallendeki bozuk yolları, kaldırımları tek tıkla bildir! Oylamalarla öncelik belirle, yetkililerin hızlı müdahalesini sağla. Güvenli ve konforlu yaşam için sesini duyur.', 'https://via.placeholder.com/400x300')">
+                <div class="project-image">
+                    <img src="https://via.placeholder.com/400x300" alt="FixMap">
+                </div>
+                <h3>🛣️ FixMap</h3>
+            </div>
+            <div class="project-box" onclick="showProjectDetails('🎓 SkillSwap', 'Becerilerini paylaş, yenilerini öğren! Gitar dersinden dil öğrenmeye, karşılıklı gönüllü takasla kendini geliştir. Hem öğret hem öğren, hayatına renk kat.', 'https://via.placeholder.com/400x300')">
+                <div class="project-image">
+                    <img src="https://via.placeholder.com/400x300" alt="SkillSwap">
+                </div>
+                <h3>🎓 SkillSwap</h3>
+            </div>
+            <div class="project-box" onclick="showProjectDetails('📦 DonateLeftover', 'Fazla yiyecekler çöpe değil, ihtiyaç sahiplerine ve hayvan barınaklarına ulaşsın! Restoranlardan sosyal sorumluluğa kolay bağ, israfı durdur.', 'https://via.placeholder.com/400x300')">
+                <div class="project-image">
+                    <img src="https://via.placeholder.com/400x300" alt="DonateLeftover">
+                </div>
+                <h3>📦 DonateLeftover</h3>
+            </div>
+            <div class="project-box" onclick="showProjectDetails('🧠 ThinkConnect', 'Genç girişimci ve öğrenciler için ilham dolu platform! Fikirlerini paylaş, ekip arkadaşları bul, projelerini büyüt. Geleceğin liderleri burada buluşuyor.', 'https://via.placeholder.com/400x300')">
+                <div class="project-image">
+                    <img src="https://via.placeholder.com/400x300" alt="ThinkConnect">
+                </div>
+                <h3>🧠 ThinkConnect</h3>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="projectModal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal()">&times;</span>
+            <div class="project-details">
+                <div class="project-image">
+                    <img src="" alt="Proje Görseli" id="modalImage">
+                </div>
+                <div class="project-info">
+                    <h2 id="modalTitle"></h2>
+                    <p id="modalDescription"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showProjectDetails(title, description, imageUrl) {
+            document.getElementById('modalTitle').textContent = title;
+            document.getElementById('modalDescription').textContent = description;
+            document.getElementById('modalImage').src = imageUrl;
+            document.getElementById('projectModal').style.display = 'block';
+        }
+
+        function closeModal() {
+            document.getElementById('projectModal').style.display = 'none';
+        }
+
+        window.onclick = function(event) {
+            const modal = document.getElementById('projectModal');
+            if (event.target == modal) {
+                modal.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html> 
