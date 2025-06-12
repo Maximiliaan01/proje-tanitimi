@@ -13,6 +13,8 @@ body {
     background-attachment: fixed;
     position: relative;
     overflow-x: hidden;
+    background-size: 200% 200%; /* Arka planı büyüterek pan animasyonu için alan yarat */
+    animation: backgroundPan 60s linear infinite; /* Yavaşça pan animasyonu */
 }
 
 body::before {
@@ -79,13 +81,15 @@ h1::after {
 }
 
 .category-box, .project-box {
-    background: #fff;
-    color: #181818;
+    /* Eski arka plan rengini kaldırıp saydamlaştırıyorum */
+    background: rgba(255, 255, 255, 0.1); /* Hafif saydam koyu arka plan */
+    backdrop-filter: blur(10px); /* Arka planı bulanıklaştır */
+    color: #ffffff; /* Metin rengi beyaz */
     border-radius: 18px 18px 24px 24px;
-    box-shadow: 0 4px 16px rgba(0,0,0,0.10), 0 1.5px 0 #ff9100;
-    border: none;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.18), 0 1.5px 0 #ff9100;
+    border: 1px solid rgba(255, 255, 255, 0.1); /* Hafif border */
     position: relative;
-    overflow: visible;
+    overflow: hidden;
     min-height: 120px;
     min-width: 0;
     padding: 1.1rem 0.7rem 1.7rem 0.7rem;
@@ -93,7 +97,7 @@ h1::after {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    transition: box-shadow 0.3s, transform 0.3s;
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Yumuşak geçiş */
     cursor: pointer;
 }
 
@@ -117,18 +121,21 @@ h1::after {
 }
 
 .category-box:hover, .project-box:hover {
-    box-shadow: 0 8px 32px rgba(255,145,0,0.18), 0 2px 8px rgba(0,0,0,0.10);
-    transform: translateY(-3px) scale(1.03);
+    box-shadow: 0 12px 40px rgba(0, 149, 255, 0.3), 0 4px 15px rgba(255,145,0,0.3); /* Hem mavi hem turuncu ışıltı */
+    transform: translateY(-8px) scale(1.05); /* Daha belirgin kalkış ve büyüme */
+    background: rgba(255, 255, 255, 0.15); /* Hoverda hafifçe daha açık saydam */
+    border: 1px solid rgba(0, 149, 255, 0.5); /* Hoverda mavi border */
 }
 
 .category-box h2, .project-box h3 {
-    color: #181818;
+    color: #ffffff; /* Metin rengi beyaz */
     z-index: 3;
     position: relative;
     font-size: 1.1rem;
     font-weight: 700;
     letter-spacing: 0.01em;
     margin-bottom: 0.2em;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.5); /* Metne hafif gölge */
 }
 
 .back-button {
@@ -208,6 +215,12 @@ h1::after {
     padding: 1rem;
     text-align: center;
     font-size: 1.2rem;
+}
+
+@keyframes backgroundPan {
+    0% { background-position: 0% 0%; }
+    50% { background-position: 100% 100%; }
+    100% { background-position: 0% 0%; }
 }
 
 @keyframes fadeIn {
