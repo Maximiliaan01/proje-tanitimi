@@ -8,12 +8,13 @@ body {
     min-height: 100vh;
     margin: 0;
     font-family: 'Segoe UI', 'Arial', sans-serif;
-    background: #111;
+    /* Modern degrade ve desenli arka plan */
+    background: linear-gradient(135deg, #181c2b 0%, #232946 100%);
+    background-attachment: fixed;
     position: relative;
     overflow-x: hidden;
 }
 
-/* Üstte fonksiyon/dalga gibi turuncu SVG çizgiler */
 body::before {
     content: '';
     position: absolute;
@@ -29,7 +30,17 @@ body::before {
 }
 
 body::after {
-    display: none;
+    content: '';
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    background-image: url('data:image/svg+xml;utf8,<svg width="100%25" height="100%25" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="dots" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="2" fill="%233a3f5a"/></pattern></defs><rect width="100%25" height="100%25" fill="url(%23dots)"/></svg>');
+    opacity: 0.18;
+    z-index: 0;
+    pointer-events: none;
+    display: block;
 }
 
 .container, .main-categories, .projects-grid, .password-container {
@@ -381,30 +392,45 @@ h1::after {
 @media (max-width: 900px) {
     .main-categories, .projects-grid {
         grid-template-columns: repeat(2, 1fr);
+        gap: 0.8rem;
         max-width: 98vw;
-        gap: 0.7rem;
+        padding: 0.2rem;
     }
 }
 
 @media (max-width: 600px) {
     .main-categories, .projects-grid {
         grid-template-columns: 1fr;
-        max-width: 98vw;
-        gap: 0.5rem;
+        gap: 0.7rem;
+        max-width: 99vw;
+        padding: 0.1rem;
     }
     .category-box, .project-box {
         min-height: 80px;
-        padding: 0.7rem 0.4rem 1.1rem 0.4rem;
+        padding: 0.7rem 0.3rem 1rem 0.3rem;
     }
     .category-box h2, .project-box h3 {
-        font-size: 0.98rem;
+        font-size: 1rem;
     }
 }
 
 @media (max-width: 480px) {
     .back-button {
-        padding: 0.6rem 1.2rem;
         font-size: 0.9rem;
+        padding: 0.5rem 1rem;
+    }
+    h1 {
+        font-size: 1.5rem;
+    }
+    .category-box, .project-box {
+        min-height: 60px;
+        padding: 0.5rem 0.2rem 0.7rem 0.2rem;
+    }
+    .category-box h2, .project-box h3 {
+        font-size: 0.95rem;
+    }
+    .project-box .project-image {
+        height: 120px;
     }
 }
 
